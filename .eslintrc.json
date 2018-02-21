@@ -1,0 +1,34 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": [
+      "error",
+      "tab"
+    ],
+    "eqeqeq": "error",
+    "curly": "error",
+    "no-case-declarations": "error",
+    "no-else-return": "warn",
+    "no-fallthrough": "error",
+    "no-floating-decimal": "warn",
+    "no-global-assign": "error",
+    "no-multi-spaces": "warn",
+    "no-redeclare": "error",
+    "no-self-assign": "error",
+    "no-unused-vars": "warn",
+    "comma-spacing": "warn",
+    "array-bracket-spacing": "warn",
+    "block-spacing": "warn",
+    "brace-style": "warn",
+    "no-multiple-empty-lines": "error",
+    "no-mixed-spaces-and-tabs": "error",
+    "require-await": "warn",
+    "semi": [
+      "error",
+      "always"
+    ]
+  }
+}

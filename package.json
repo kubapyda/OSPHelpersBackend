@@ -1,0 +1,26 @@
+{
+  "name": "osphelpers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon bootstrap.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jakub Pyda",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.18.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "boom": "^7.1.1",
+    "good": "^8.1.0",
+    "good-console": "^7.1.0",
+    "good-squeeze": "^5.0.2",
+    "hapi": "^17.2.0",
+    "hapi-swagger": "^9.1.1",
+    "joi": "^13.1.2"
+  }
+}
