@@ -1,6 +1,12 @@
 import FirefightersController from './firefighters.controller';
+import Joi from 'joi';
 
 const firefightersController = new FirefightersController();
+const schema = Joi.object().keys({
+	name: Joi.string().required(),
+	surname: Joi.string().required(),
+	gender: Joi.string().required()
+});
 
 export default [
 	{
@@ -20,7 +26,12 @@ export default [
 			handler: firefightersController.findOne,
 			tags: ['api'],
 			description: 'Find Firefighters in system by id.',
-			notes: 'Return a single firefighters from system.'
+			notes: 'Return a single firefighters from system.',
+			validate: {
+				params: Joi.object().keys({
+					id: Joi.number().required()
+				})
+			}
 		}
 	},
 	{
@@ -30,7 +41,10 @@ export default [
 			handler: firefightersController.create,
 			tags: ['api'],
 			description: 'Create new firefighter in system.',
-			notes: 'Return newly created firefighter.'
+			notes: 'Return newly created firefighter.',
+			validate: {
+				payload: schema
+			}
 		}
 	},
 	{
@@ -40,7 +54,13 @@ export default [
 			handler: firefightersController.update,
 			tags: ['api'],
 			description: 'Update information about firefighter in system.',
-			notes: 'Return updated firefighter.'
+			notes: 'Return updated firefighter.',
+			validate: {
+				payload: schema,
+				params: Joi.object().keys({
+					id: Joi.number().required()
+				})
+			}
 		}
 	},
 	{
@@ -50,7 +70,12 @@ export default [
 			handler: firefightersController.delete,
 			tags: ['api'],
 			description: 'Delete firefighters by id from system.',
-			notes: 'Return a deleted message.'
+			notes: 'Return a deleted message.',
+			validate: {
+				params: Joi.object().keys({
+					id: Joi.number().required()
+				})
+			}
 		}
 	},
 ];
