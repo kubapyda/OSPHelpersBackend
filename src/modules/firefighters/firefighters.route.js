@@ -4,8 +4,12 @@ import Joi from 'joi';
 const firefightersController = new FirefightersController();
 const schema = Joi.object().keys({
 	name: Joi.string().required(),
-	surname: Joi.string().required(),
-	gender: Joi.string().required()
+    surname: Joi.string().required(),
+    login: Joi.string().required(),
+    gender: Joi.string().required(),
+    birthdayDate: Joi.date().required(),
+    entryDate: Joi.date().required(),
+    type: Joi.string().required()
 });
 
 export default [

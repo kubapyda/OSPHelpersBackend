@@ -1,10 +1,23 @@
+import * as _ from 'lodash';
+
 import Boom from 'boom';
 import Firefighters from '../../models/firefighters.model';
+import sequelize from '../../models/index';
 
 export default class FirefightersController {
 
 	async find (request, h) {
-		return await Firefighters.findAll();
+        await sequelize.sync();
+        const page = _.isUndefined(request.query.page) ? 1 : request.query.page;
+        const size = 5;
+        const offset = size * (page - 1);
+        return {
+            totalCount: await Firefighters.count(),
+            data: await Firefighters.findAll({
+                limit: size,
+                offset: offset
+            })
+        };
 	}
 
 	async findOne (request, h) {
@@ -20,11 +33,18 @@ export default class FirefightersController {
 	}
 
 	async create (request, h) {
-		return await Firefighters.create({
-			name: request.payload.name,
-			surname: request.payload.surname,
-			gender: request.params.gender
-		});
+		let password = 'qwerty';
+        await sequelize.sync();
+        return await Firefighters.create({
+            name: request.payload.name,
+            surname: request.payload.surname,
+            login: request.payload.login,
+            gender: request.payload.gender,
+            birthdayDate: request.payload.birthdayDate,
+            entryDate: request.payload.entryDate,
+            type: request.payload.type,
+            password: password
+        });
 	}
 
 	async update (request, h) {
@@ -55,3 +75,4 @@ export default class FirefightersController {
 	}
 
 }
+	

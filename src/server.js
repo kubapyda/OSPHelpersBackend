@@ -3,7 +3,14 @@ import Plugins from './plugins/plugins';
 
 const server = new Hapi.Server({
 	host: 'localhost',
-	port: 3333
+	port: 3333,
+    routes: {
+        cors: {
+            origin: ["*"],
+            headers: ["Accept", "Content-Type"],
+            additionalHeaders: ["X-Requested-With"]
+        }
+    }
 });
 
 (async () => {
