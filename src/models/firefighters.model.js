@@ -15,21 +15,21 @@ const Firefighters = sequelize.define('Firefighters', {
 		allowNull: true
 	},
 	gender: {
-		type: Sequelize.STRING,
+		type: Sequelize.ENUM('MAN', 'WOMAN'),
 		allowNull: true
-    },
-    birthdayDate: {
-        type: Sequelize.DATE,
-        allowNull: true
-    },
-    entryDate: {
-        type: Sequelize.DATE,
-        allowNull: true
-    },
-    type: {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
+	},
+	birthdayDate: {
+		type: Sequelize.DATE,
+		allowNull: true
+	},
+	entryDate: {
+		type: Sequelize.DATE,
+		allowNull: true
+	},
+	type: {
+		type: Sequelize.ENUM('JOT', 'MDP', 'MEMBER'),
+		allowNull: true
+	},
 	password: {
 		type: Sequelize.STRING,
 		allowNull: true

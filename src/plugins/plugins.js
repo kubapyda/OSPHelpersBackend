@@ -1,4 +1,5 @@
 import FirefightersModule from '../modules/firefighters/firefighteres.module';
+import CarsModule from '../modules/cars/cars.module';
 import Good from 'good';
 import HapiSwagger from 'hapi-swagger';
 import Inert from 'inert';
@@ -37,5 +38,6 @@ export default [
 		plugin: Good,
 		options: goodOptions
 	},
-	FirefightersModule
+	FirefightersModule,
+	CarsModule
 ];
