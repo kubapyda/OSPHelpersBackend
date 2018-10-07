@@ -24,6 +24,21 @@ export default [
 		}
 	},
 	{
+		path: '/api/firefighters/minimal/{type}',
+		method: 'GET',
+		config: {
+			handler: firefightersController.findMinimal,
+			tags: ['api'],
+			description: 'Find all Firefighters in system with minimal data.',
+			notes: 'Return minimal list of all of the firefighters from system.',
+			validate: {
+				params: Joi.object().keys({
+					type: Joi.string().required().valid('JOT', 'MDP', 'MEMBER')
+				})
+			}
+		}
+	},
+	{
 		path: '/api/firefighters/{id}',
 		method: 'GET',
 		config: {

@@ -32,6 +32,18 @@ export default class CarsController {
 		return car;
 	}
 
+	async findMinimal (request, h) {
+		const carsMinimal = await Cars.findAll({ 
+			attributes: ['id', 'mark', 'model', 'operationNumber']
+		}).map(car => {
+			return {
+				id: car.id,
+				value: `${car.mark} ${car.model} - ${car.operationNumber}`
+			};
+		});
+		return carsMinimal;
+	}
+
 	async create (request, h) {
 		await sequelize.sync();
 		return await Cars.create({

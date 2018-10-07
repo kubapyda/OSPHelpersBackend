@@ -63,6 +63,16 @@ export default [
 		}
 	},
 	{
+		path: '/api/cars/minimal',
+		method: 'GET',
+		config: {
+			handler: carsController.findMinimal,
+			tags: ['api'],
+			description: 'Find minimal version of all cars in system.',
+			notes: 'Return all cars from system in minimal form.'
+		}
+	},
+	{
 		path: '/api/cars',
 		method: 'POST',
 		config: {

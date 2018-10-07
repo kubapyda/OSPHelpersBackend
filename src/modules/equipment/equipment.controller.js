@@ -32,6 +32,18 @@ export default class EquipmentController {
 		return equipmentItem;
 	}
 
+	async findMinimal (request, h) {
+		const equipmentMinimal = await EquipmentItem.findAll({
+			attributes: ['id', 'name']
+		}).map(equipmentItem => {
+			return {
+				id: equipmentItem.id,
+				value: equipmentItem.name
+			};
+		});
+		return equipmentMinimal;
+	}
+
 	async create (request, h) {
 		await sequelize.sync();
 		return await EquipmentItem.create({

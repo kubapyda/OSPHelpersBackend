@@ -34,6 +34,16 @@ export default [
 		}
 	},
 	{
+		path: '/api/equipment/minimal',
+		method: 'GET',
+		config: {
+			handler: equipmentController.findMinimal,
+			tags: ['api'],
+			description: 'Find equipment items in system with minimal data.',
+			notes: 'Return a equipment items from system with minimal data.',
+		}
+	},
+	{
 		path: '/api/equipment',
 		method: 'POST',
 		config: {
