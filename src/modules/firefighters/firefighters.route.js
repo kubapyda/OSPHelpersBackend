@@ -6,7 +6,11 @@ const schema = Joi.object().keys({
 	name: Joi.string().required(),
 	surname: Joi.string().required(),
 	login: Joi.string().required(),
-	gender: Joi.string().required().valid('MAN', 'WOMAN'),
+	gender: Joi.string().required().valid('MAN', 'WOMAN'), 
+	courseCompletitionDate: Joi.date().when('type', { is: 'JOT', then: Joi.required() }),
+	courseValidityEnd: Joi.date().when('type', { is: 'JOT', then: Joi.required() }),
+	medicalExaminationDate: Joi.date().when('type', { is: 'JOT', then: Joi.required() }),
+	endMedicalExaminationDate: Joi.date().when('type', { is: 'JOT', then: Joi.required() }),
 	birthdayDate: Joi.date().required(),
 	entryDate: Joi.date().required(),
 	type: Joi.string().required().valid('JOT', 'MDP', 'MEMBER')
