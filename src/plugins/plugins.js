@@ -4,6 +4,7 @@ import FirefightersModule from '../modules/firefighters/firefighteres.module';
 import Good from 'good';
 import HapiSwagger from 'hapi-swagger';
 import Inert from 'inert';
+import MedicalExaminationModule from '../modules/medical-examination/medical-examination.module';
 import Vision from 'vision';
 
 const SwaggerOptions = {
@@ -41,5 +42,6 @@ export default [
 	},
 	FirefightersModule,
 	CarsModule,
-	EquipmentModule
+	EquipmentModule,
+	MedicalExaminationModule
 ];
