@@ -4,6 +4,9 @@ import Boom from 'boom';
 import CoursesService from '../../services/courses.service';
 import Firefighters from '../../models/firefighters.model';
 import MedicalExaminationService from '../../services/medical-examination.service';
+import UtilService from '../../services/util.service';
+import configPassword from '../../../config-password';
+import moment from 'moment';
 import sequelize from '../../models/index';
 
 export default class FirefightersController {
@@ -16,6 +19,7 @@ export default class FirefightersController {
 		return {
 			totalCount: await Firefighters.count(),
 			data: await Firefighters.findAll({
+				attributes: ['id', 'name', 'surname', 'gender', 'birthdayDate', 'entryDate', 'type', 'role'],
 				limit: size,
 				offset: offset
 			})
@@ -34,7 +38,7 @@ export default class FirefightersController {
 		const course = await CoursesService.findCourse(request.params.id);
 		const medicalExamination = await MedicalExaminationService.findMedicalExaminationForFirefighter(request.params.id);
 		return _.assign(
-			_.pick(firefighter, ['id', 'name', 'surname', 'login', 'gender', 'birthdayDate', 'entryDate', 'type']),
+			_.pick(firefighter, ['id', 'name', 'surname', 'login', 'gender', 'birthdayDate', 'entryDate', 'type', 'role']),
 			_.pick(course, ['courseCompletitionDate']),
 			_.pick(medicalExamination, ['medicalExaminationDate'])
 		);
@@ -54,12 +58,14 @@ export default class FirefightersController {
 	}
 
 	async create (request) {
-		let password = 'qwerty';
+		let password = `${configPassword.password}${moment(request.payload.birthdayDate).format('DDMMYYYY')}`;
 		await sequelize.sync();
 		const firefighter = await Firefighters.create(
 			_.assignIn(
-				_.pick(request.payload, ['name', 'surname', 'login', 'gender', 'birthdayDate', 'entryDate', 'type']),
-				{ password: password }
+				_.pick(request.payload, ['name', 'surname', 'login', 'gender', 'birthdayDate', 'entryDate', 'type', 'role']), { 
+					password: await UtilService.hashPassword(password),
+					firstLogin: true
+				}
 			)
 		);
 		if (request.payload.type === 'JOT') {

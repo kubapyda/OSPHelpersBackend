@@ -12,7 +12,8 @@ const Firefighters = sequelize.define('Firefighters', {
 	},
 	login: {
 		type: Sequelize.STRING,
-		allowNull: true
+		allowNull: true,
+		unique: true
 	},
 	gender: {
 		type: Sequelize.ENUM('MAN', 'WOMAN'),
@@ -32,6 +33,14 @@ const Firefighters = sequelize.define('Firefighters', {
 	},
 	password: {
 		type: Sequelize.STRING,
+		allowNull: true
+	},
+	role: {
+		type: Sequelize.ENUM('USER', 'ADMIN'),
+		allowNull: true
+	},
+	firstLogin: {
+		type: Sequelize.BOOLEAN,
 		allowNull: true
 	}
 });

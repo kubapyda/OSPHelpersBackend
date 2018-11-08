@@ -1,5 +1,6 @@
 import CarsController from './cars.controller';
 import Joi from 'joi';
+import { headerValid } from '../../constants/constants';
 
 const carsController = new CarsController();
 const schema = Joi.object().keys({
@@ -44,7 +45,10 @@ export default [
 			handler: carsController.find,
 			tags: ['api'],
 			description: 'Find all Cars in system.',
-			notes: 'Return all the cars from system.'
+			notes: 'Return all the cars from system.',
+			validate: {
+				headers: headerValid
+			}
 		}
 	},
 	{
@@ -56,6 +60,7 @@ export default [
 			description: 'Find Car in system by id.',
 			notes: 'Return a single car from system.',
 			validate: {
+				headers: headerValid,
 				params: Joi.object().keys({
 					id: Joi.number().required()
 				})
@@ -69,7 +74,10 @@ export default [
 			handler: carsController.findMinimal,
 			tags: ['api'],
 			description: 'Find minimal version of all cars in system.',
-			notes: 'Return all cars from system in minimal form.'
+			notes: 'Return all cars from system in minimal form.',
+			validate: {
+				headers: headerValid
+			}
 		}
 	},
 	{
@@ -81,6 +89,7 @@ export default [
 			description: 'Create new car in system.',
 			notes: 'Return newly created car.',
 			validate: {
+				headers: headerValid,
 				payload: schema
 			}
 		}
@@ -95,6 +104,7 @@ export default [
 			notes: 'Return updated car.',
 			validate: {
 				payload: schema,
+				headers: headerValid,
 				params: Joi.object().keys({
 					id: Joi.number().required()
 				})
@@ -110,6 +120,7 @@ export default [
 			description: 'Delete car by id from system.',
 			notes: 'Return a deleted message.',
 			validate: {
+				headers: headerValid,
 				params: Joi.object().keys({
 					id: Joi.number().required()
 				})

@@ -1,5 +1,6 @@
 import EquipmentController from './equipment.controller';
 import Joi from 'joi';
+import { headerValid } from '../../constants/constants';
 
 const equipmentController = new EquipmentController();
 const schema = Joi.object().keys({
@@ -15,7 +16,10 @@ export default [
 			handler: equipmentController.find,
 			tags: ['api'],
 			description: 'Find all equipment items in system.',
-			notes: 'Return all the equipment items from system.'
+			notes: 'Return all the equipment items from system.',
+			validate: {
+				headers: headerValid
+			}
 		}
 	},
 	{
@@ -27,6 +31,7 @@ export default [
 			description: 'Find equipment item in system by id.',
 			notes: 'Return a single equipment item from system.',
 			validate: {
+				headers: headerValid,
 				params: Joi.object().keys({
 					id: Joi.number().required()
 				})
@@ -41,6 +46,9 @@ export default [
 			tags: ['api'],
 			description: 'Find equipment items in system with minimal data.',
 			notes: 'Return a equipment items from system with minimal data.',
+			validate: {
+				headers: headerValid
+			}
 		}
 	},
 	{
@@ -52,7 +60,8 @@ export default [
 			description: 'Create new equipment item in system.',
 			notes: 'Return newly created equipment item.',
 			validate: {
-				payload: schema
+				payload: schema,
+				headers: headerValid
 			}
 		}
 	},
@@ -66,6 +75,7 @@ export default [
 			notes: 'Return updated equipment item.',
 			validate: {
 				payload: schema,
+				headers: headerValid,
 				params: Joi.object().keys({
 					id: Joi.number().required()
 				})
@@ -81,6 +91,7 @@ export default [
 			description: 'Delete equipment item by id from system.',
 			notes: 'Return a deleted message.',
 			validate: {
+				headers: headerValid,
 				params: Joi.object().keys({
 					id: Joi.number().required()
 				})

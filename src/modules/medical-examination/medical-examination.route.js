@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import MedicalExaminationController from './medical-examination.controller';
+import { headerValid } from '../../constants/constants';
 
 const medicalExaminationController = new MedicalExaminationController();
 const schema = Joi.object().keys({
@@ -16,7 +17,10 @@ export default [
 			handler: medicalExaminationController.find,
 			tags: ['api'],
 			description: 'Find all medical examination for firefighter in system.',
-			notes: 'Return all medical examination for firefighter from system.'
+			notes: 'Return all medical examination for firefighter from system.',
+			validate: {
+				headers: headerValid
+			}
 		}
 	},
 	{
@@ -28,6 +32,7 @@ export default [
 			description: 'Find medical examination history for firefighter in system by his id.',
 			notes: 'Return a list of all medical examination for firefighter from system.',
 			validate: {
+				headers: headerValid,
 				params: Joi.object().keys({
 					firefighterId: Joi.number().required()
 				})
@@ -43,7 +48,8 @@ export default [
 			description: 'Create new medical examination for firefighter in system.',
 			notes: 'Return newly created medical examination.',
 			validate: {
-				payload: schema
+				payload: schema,
+				headers: headerValid
 			}
 		}
 	}

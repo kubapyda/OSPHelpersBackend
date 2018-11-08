@@ -1,5 +1,6 @@
 import FirefightersController from './firefighters.controller';
 import Joi from 'joi';
+import { headerValid } from '../../constants/constants';
 
 const firefightersController = new FirefightersController();
 const schema = Joi.object().keys({
@@ -13,7 +14,8 @@ const schema = Joi.object().keys({
 	endMedicalExaminationDate: Joi.date().when('type', { is: 'JOT', then: Joi.required() }),
 	birthdayDate: Joi.date().required(),
 	entryDate: Joi.date().required(),
-	type: Joi.string().required().valid('JOT', 'MDP', 'MEMBER')
+	type: Joi.string().required().valid('JOT', 'MDP', 'MEMBER'),
+	role: Joi.string().required().valid('ADMIN', 'USER')
 });
 
 export default [
@@ -24,7 +26,10 @@ export default [
 			handler: firefightersController.find,
 			tags: ['api'],
 			description: 'Find all Firefighters in system.',
-			notes: 'Return all the firefighters from system.'
+			notes: 'Return all the firefighters from system.',
+			validate: {
+				headers: headerValid
+			}
 		}
 	},
 	{
@@ -36,6 +41,7 @@ export default [
 			description: 'Find all Firefighters in system with minimal data.',
 			notes: 'Return minimal list of all of the firefighters from system.',
 			validate: {
+				headers: headerValid,
 				params: Joi.object().keys({
 					type: Joi.string().required().valid('JOT', 'MDP', 'MEMBER')
 				})
@@ -51,6 +57,7 @@ export default [
 			description: 'Find Firefighters in system by id.',
 			notes: 'Return a single firefighters from system.',
 			validate: {
+				headers: headerValid,
 				params: Joi.object().keys({
 					id: Joi.number().required()
 				})
@@ -66,7 +73,8 @@ export default [
 			description: 'Create new firefighter in system.',
 			notes: 'Return newly created firefighter.',
 			validate: {
-				payload: schema
+				payload: schema,
+				headers: headerValid
 			}
 		}
 	},
@@ -80,6 +88,7 @@ export default [
 			notes: 'Return updated firefighter.',
 			validate: {
 				payload: schema,
+				headers: headerValid,
 				params: Joi.object().keys({
 					id: Joi.number().required()
 				})
@@ -95,6 +104,7 @@ export default [
 			description: 'Delete firefighters by id from system.',
 			notes: 'Return a deleted message.',
 			validate: {
+				headers: headerValid,
 				params: Joi.object().keys({
 					id: Joi.number().required()
 				})

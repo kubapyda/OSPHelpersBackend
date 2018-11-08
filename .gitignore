@@ -94,5 +94,8 @@ $RECYCLE.BIN/
 #config.json
 config.json
 
+#config-password.json
+config-password.json
+
 
 # End of https://www.gitignore.io/api/node,windows,visualstudiocode
