@@ -1,6 +1,7 @@
+import { AdminRole, headerValid } from '../../constants/constants';
+
 import FirefightersController from './firefighters.controller';
 import Joi from 'joi';
-import { headerValid } from '../../constants/constants';
 
 const firefightersController = new FirefightersController();
 const schema = Joi.object().keys({
@@ -22,11 +23,12 @@ export default [
 	{
 		path: '/api/firefighters',
 		method: 'GET',
-		config: {
+		options: {
 			handler: firefightersController.find,
 			tags: ['api'],
 			description: 'Find all Firefighters in system.',
 			notes: 'Return all the firefighters from system.',
+			plugins: AdminRole,
 			validate: {
 				headers: headerValid
 			}
@@ -35,11 +37,12 @@ export default [
 	{
 		path: '/api/firefighters/minimal/{type}',
 		method: 'GET',
-		config: {
+		options: {
 			handler: firefightersController.findMinimal,
 			tags: ['api'],
 			description: 'Find all Firefighters in system with minimal data.',
 			notes: 'Return minimal list of all of the firefighters from system.',
+			plugins: AdminRole,
 			validate: {
 				headers: headerValid,
 				params: Joi.object().keys({
@@ -51,11 +54,12 @@ export default [
 	{
 		path: '/api/firefighters/{id}',
 		method: 'GET',
-		config: {
+		options: {
 			handler: firefightersController.findOne,
 			tags: ['api'],
 			description: 'Find Firefighters in system by id.',
 			notes: 'Return a single firefighters from system.',
+			plugins: AdminRole,
 			validate: {
 				headers: headerValid,
 				params: Joi.object().keys({
@@ -67,11 +71,12 @@ export default [
 	{
 		path: '/api/firefighters',
 		method: 'POST',
-		config: {
+		options: {
 			handler: firefightersController.create,
 			tags: ['api'],
 			description: 'Create new firefighter in system.',
 			notes: 'Return newly created firefighter.',
+			plugins: AdminRole,
 			validate: {
 				payload: schema,
 				headers: headerValid
@@ -81,11 +86,12 @@ export default [
 	{
 		path: '/api/firefighters/{id}',
 		method: 'PUT',
-		config: {
+		options: {
 			handler: firefightersController.update,
 			tags: ['api'],
 			description: 'Update information about firefighter in system.',
 			notes: 'Return updated firefighter.',
+			plugins: AdminRole,
 			validate: {
 				payload: schema,
 				headers: headerValid,
@@ -98,11 +104,12 @@ export default [
 	{
 		path: '/api/firefighters/{id}',
 		method: 'DELETE',
-		config: {
+		options: {
 			handler: firefightersController.delete,
 			tags: ['api'],
 			description: 'Delete firefighters by id from system.',
 			notes: 'Return a deleted message.',
+			plugins: AdminRole,
 			validate: {
 				headers: headerValid,
 				params: Joi.object().keys({

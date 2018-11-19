@@ -4,4 +4,8 @@ const headerValid = Joi.object({
 	authorization: Joi.string().required()
 }).unknown();
 
-export { headerValid };
+const AdminRole = {
+	role: 'ADMIN'
+};
+
+export { headerValid, AdminRole };

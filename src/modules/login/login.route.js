@@ -7,7 +7,7 @@ export default [
 	{
 		path: '/api/login',
 		method: 'POST',
-		config: {
+		options: {
 			handler: loginController.login,
 			tags: ['api'],
 			description: 'User can login to his Account',

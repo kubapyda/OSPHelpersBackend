@@ -1,6 +1,7 @@
+import { AdminRole, headerValid } from '../../constants/constants';
+
 import CarsController from './cars.controller';
 import Joi from 'joi';
-import { headerValid } from '../../constants/constants';
 
 const carsController = new CarsController();
 const schema = Joi.object().keys({
@@ -41,11 +42,12 @@ export default [
 	{
 		path: '/api/cars',
 		method: 'GET',
-		config: {
+		options: {
 			handler: carsController.find,
 			tags: ['api'],
 			description: 'Find all Cars in system.',
 			notes: 'Return all the cars from system.',
+			plugins: AdminRole,
 			validate: {
 				headers: headerValid
 			}
@@ -54,11 +56,12 @@ export default [
 	{
 		path: '/api/cars/{id}',
 		method: 'GET',
-		config: {
+		options: {
 			handler: carsController.findOne,
 			tags: ['api'],
 			description: 'Find Car in system by id.',
 			notes: 'Return a single car from system.',
+			plugins: AdminRole,
 			validate: {
 				headers: headerValid,
 				params: Joi.object().keys({
@@ -70,11 +73,12 @@ export default [
 	{
 		path: '/api/cars/minimal',
 		method: 'GET',
-		config: {
+		options: {
 			handler: carsController.findMinimal,
 			tags: ['api'],
 			description: 'Find minimal version of all cars in system.',
 			notes: 'Return all cars from system in minimal form.',
+			plugins: AdminRole,
 			validate: {
 				headers: headerValid
 			}
@@ -83,11 +87,12 @@ export default [
 	{
 		path: '/api/cars',
 		method: 'POST',
-		config: {
+		options: {
 			handler: carsController.create,
 			tags: ['api'],
 			description: 'Create new car in system.',
 			notes: 'Return newly created car.',
+			plugins: AdminRole,
 			validate: {
 				headers: headerValid,
 				payload: schema
@@ -97,11 +102,12 @@ export default [
 	{
 		path: '/api/cars/{id}',
 		method: 'PUT',
-		config: {
+		options: {
 			handler: carsController.update,
 			tags: ['api'],
 			description: 'Update information about car in system.',
 			notes: 'Return updated car.',
+			plugins: AdminRole,
 			validate: {
 				payload: schema,
 				headers: headerValid,
@@ -114,11 +120,12 @@ export default [
 	{
 		path: '/api/cars/{id}',
 		method: 'DELETE',
-		config: {
+		options: {
 			handler: carsController.delete,
 			tags: ['api'],
 			description: 'Delete car by id from system.',
 			notes: 'Return a deleted message.',
+			plugins: AdminRole,
 			validate: {
 				headers: headerValid,
 				params: Joi.object().keys({

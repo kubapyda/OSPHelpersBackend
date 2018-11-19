@@ -21,7 +21,8 @@ export default class LoginController {
 				token: await JwtService.issue({
 					payload: {
 						id: user.id,
-						login: user.login
+						login: user.login,
+						scope: user.role
 					},
 					expiresIn: '1 day'
 				})

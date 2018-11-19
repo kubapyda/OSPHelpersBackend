@@ -39,7 +39,6 @@ export default class MedicalExaminationController {
 				}
 			};
 		});
-		console.log(_.size(medicalExaminations));
 		return {
 			totalCount: await Firefighters.count({ where: { type: 'JOT' }}),
 			data: medicalExaminations

@@ -11,14 +11,17 @@ export default class JwtService {
 		});
 	}
 
-	static async validate(decodedToken) {
+	static async validate(decodedToken, request) {
+		const role = request.route.settings.plugins.role;
 		const user = await Firefighters.findOne({
+			attributes: ['id', 'login', 'role'],
 			where: {
 				id: decodedToken.id,
 				login: decodedToken.login
 			}
 		});
-		if (!user) {
+		
+		if (!user || user.role !== role) {
 			return {
 				isValid: false
 			};
