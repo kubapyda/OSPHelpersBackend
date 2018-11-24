@@ -1,4 +1,5 @@
 import CarsModule from '../modules/cars/cars.module';
+import CoursesModule from '../modules/courses/courses.module';
 import EquipmentModule from '../modules/equipment/equipment.module';
 import FirefightersModule from '../modules/firefighters/firefighteres.module';
 import Good from 'good';
@@ -47,5 +48,6 @@ export default [
 	FirefightersModule,
 	CarsModule,
 	EquipmentModule,
-	MedicalExaminationModule
+	MedicalExaminationModule,
+	CoursesModule
 ];
