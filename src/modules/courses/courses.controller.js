@@ -21,7 +21,6 @@ export default class CoursesController {
 		}).map((course) => {
 			const firefighterIdx = _.findIndex(mapedCourses, { id: course.Firefighter.id });
 			const parsedCourse = CoursesService.setCourseStatus(course);
-			console.log(parsedCourse, firefighterIdx);
 			if (firefighterIdx === -1) {
 				const firefighter = {
 					id: course.Firefighter.dataValues.id,

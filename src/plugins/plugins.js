@@ -7,6 +7,7 @@ import HapiSwagger from 'hapi-swagger';
 import Inert from 'inert';
 import LoginModule from '../modules/login/login.module';
 import MedicalExaminationModule from '../modules/medical-examination/medical-examination.module';
+import PaymentsModule from '../modules/payments/payments.module';
 import Vision from 'vision';
 import hapiAuthJwt2 from 'hapi-auth-jwt2';
 
@@ -49,5 +50,6 @@ export default [
 	CarsModule,
 	EquipmentModule,
 	MedicalExaminationModule,
-	CoursesModule
+	CoursesModule,
+	PaymentsModule
 ];

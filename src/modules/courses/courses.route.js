@@ -69,10 +69,7 @@ export default [
 				params: Joi.object().keys({
 					id: Joi.number().integer().required(),
 					type: Joi.string().required()
-				}),
-				failAction: (reuquest, h, err) => {
-					console.log(err);
-				}
+				})
 			}
 		}
 	}
