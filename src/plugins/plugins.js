@@ -1,3 +1,4 @@
+import ActionsModule from '../modules/actions/actions.module';
 import CarsModule from '../modules/cars/cars.module';
 import CoursesModule from '../modules/courses/courses.module';
 import EquipmentModule from '../modules/equipment/equipment.module';
@@ -47,6 +48,7 @@ export default [
 	hapiAuthJwt2,
 	LoginModule,
 	FirefightersModule,
+	ActionsModule,
 	CarsModule,
 	EquipmentModule,
 	MedicalExaminationModule,
