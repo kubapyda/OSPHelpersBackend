@@ -1,4 +1,4 @@
-import { AdminRole, headerValid } from '../../constants/constants';
+import { AdminRole, AdminUserRole, headerValid } from '../../constants/constants';
 
 import Joi from 'joi';
 import PaymentsController from './payments.controller';
@@ -33,7 +33,6 @@ export default [
 			description: 'Add new payment for firefighter in system.',
 			notes: 'Return newly added payment for Firefighters.',
 			plugins: AdminRole,
-			auth: false,
 			validate: {
 				headers: headerValid,
 				payload: schema
@@ -48,8 +47,7 @@ export default [
 			tags: ['api'],
 			description: 'Retun payments for firefighter with history in system.',
 			notes: 'Return payments for Firefighter.',
-			plugins: AdminRole,
-			auth: false,
+			plugins: AdminUserRole,
 			validate: {
 				headers: headerValid,
 				params: Joi.object().keys({

@@ -43,6 +43,8 @@ const Firefighters = sequelize.define('Firefighters', {
 		type: Sequelize.BOOLEAN,
 		allowNull: true
 	}
+}, {
+	paranoid: true
 });
 
 export default Firefighters;

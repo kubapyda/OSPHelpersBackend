@@ -1,4 +1,4 @@
-import { AdminRole, headerValid } from '../../constants/constants';
+import { AdminRole, UserRole, headerValid } from '../../constants/constants';
 
 import CoursesController from './courses.controller';
 import Joi from 'joi';
@@ -69,6 +69,23 @@ export default [
 				params: Joi.object().keys({
 					id: Joi.number().integer().required(),
 					type: Joi.string().required()
+				})
+			}
+		}
+	},
+	{
+		path: '/api/courses/{id}',
+		method: 'GET',
+		options: {
+			handler: coursesController.findFirefighterCourses,
+			tags: ['api'],
+			description: 'Retun courses for firefighter in system.',
+			notes: 'Return courses for Firefighter.',
+			plugins: UserRole,
+			validate: {
+				headers: headerValid,
+				params: Joi.object().keys({
+					id: Joi.number().integer().required()
 				})
 			}
 		}

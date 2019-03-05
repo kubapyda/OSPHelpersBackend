@@ -67,6 +67,8 @@ const Cars = sequelize.define('Cars', {
 		),
 		allowNull: true
 	}
+}, {
+	paranoid: true
 });
 
 export default Cars;

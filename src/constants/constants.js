@@ -8,4 +8,12 @@ const AdminRole = {
 	role: 'ADMIN'
 };
 
-export { headerValid, AdminRole };
+const UserRole = {
+	role: 'USER'
+};
+
+const AdminUserRole = {
+	role: ['USER', 'ADMIN']
+};
+
+export { headerValid, AdminRole, UserRole, AdminUserRole };

@@ -1,4 +1,4 @@
-import { AdminRole, headerValid } from '../../constants/constants';
+import { AdminRole, AdminUserRole, headerValid } from '../../constants/constants';
 
 import Joi from 'joi';
 import MedicalExaminationController from './medical-examination.controller';
@@ -33,7 +33,7 @@ export default [
 			tags: ['api'],
 			description: 'Find medical examination history for firefighter in system by his id.',
 			notes: 'Return a list of all medical examination for firefighter from system.',
-			plugins: AdminRole,
+			plugins: AdminUserRole,
 			validate: {
 				headers: headerValid,
 				params: Joi.object().keys({

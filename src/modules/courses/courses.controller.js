@@ -49,6 +49,16 @@ export default class CoursesController {
 		});
 	}
 
+	async findFirefighterCourses (request) {
+		await sequelize.sync();
+		return await Courses.findAll({
+			attributes: ['id', 'courseType', 'courseCompletitionDate', 'courseValidityEnd'],
+			where: {
+				FirefighterId: request.params.id
+			}
+		});
+	}
+
 	async create (request) {
 		return await CoursesService.createCourse(request.payload);
 	}
